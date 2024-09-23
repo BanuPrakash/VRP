@@ -111,4 +111,25 @@ docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 
 
 ```
 
+FunctionalInterface:
+is one where only one method has to be implemented
 
+we can use lambda expressions instead of anonymous class
+
+HOF: High Order Function:
+1) function accepting function as an argument
+2) function return a function
+
+Commonly used HOF:
+1) filter
+2) map
+3) reduce
+4) forEach
+6) skip
+7) limit
+
+https://rxmarbles.com/
+
+==================================================
+
+Java Concurrency

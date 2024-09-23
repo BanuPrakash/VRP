@@ -7,7 +7,7 @@ public class Tv extends Product{
     }
 
     public Tv(int id, String name, double price, String screenType) {
-        super(id, name, price);
+        super(id, name, price, "");
         this.screenType = screenType;
     }
 

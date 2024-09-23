@@ -7,7 +7,7 @@ public class Mobile extends Product{
     }
 
     public Mobile(int id, String name, double price, String connectivity) {
-        super(id, name, price);
+        super(id, name, price, "");
         this.connectivity = connectivity;
     }
 
