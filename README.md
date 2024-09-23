@@ -95,5 +95,20 @@ Why program to interface?
 4) INTEGRATION
 5) LOOSE COUPLING
 
+Maven permission
+
+```
+a) docker pull mysql
+
+b) 
+For Windows:
+docker run --name local-mysql –p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+container name given here is "local-mysql"
+
+For Mac:
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+```
 
 
