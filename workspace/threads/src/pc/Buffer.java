@@ -33,7 +33,7 @@ public class Buffer {
         while (true) {
                 // consumer thread waits while not set
                if(!isSet)
-                    wait();
+                    wait(5000); // Thread.sleep(5000);
                 int val = data;
                 System.out.println("Consumer consumed-"
                         + val);

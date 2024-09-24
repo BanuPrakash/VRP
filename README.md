@@ -175,4 +175,75 @@ A member is said to be thread safe if it doesn't get effected in multi-threaded 
 wait() and notify()/notifyAll() can be used for inter-thread communication
 
 
+Thread calls this method:
+```
+// synchronized acquires a lock
+// wait() release a lock
+void doTask() {
+    wait(); // what happens to this line ==> IllegalMonitorStateException
+}
+```
 
+Banking Service:
+
+```
+class BankingService {
+
+    public  void transferFunds(Account fromAcc, Account toAcc, double amt) {
+        synchronized(fromAcc) { // acquire lock of fromAcc
+            synchronized(toAcc) { // acquire lock of toAcc
+                fromAcc.withdraw(amt);
+                toAcc.deposit(amt);
+            } // release lock of toAcc
+        } // release lock of fromAcc
+        
+    }
+}
+
+class Uitlity {
+    public void copyList(List<String> dest, List<String> source) {
+        synchronized(dest) {
+            syncronized(source) {
+                copying from source to destination
+            }
+        }
+    }
+}
+
+```
+
+Java 5: fixed few issues with threads
+1) only one lock per object [with synchronized]
+```
+class Account {
+    UserData data; // avatar, profilePic, email
+    double balance;
+}
+
+If transaction is happening, I can't update my avatar
+We should have a sperate lock for UserData and another lock for balance
+
+```
+2) timeout is not there
+
+3) Deadlock
+
+```
+Thread t1 --> SB102 to SB451 5000
+Thread t2 --> SB451 to SB102 9000
+
+ public  void transferFunds(Account fromAcc, Account toAcc, double amt) {
+        synchronized(fromAcc) { // t1 gets SB102 lock, t2 gets SB451 lock
+            synchronized(toAcc) { // t1 wants SB451, t2 wants SB102 lock
+                fromAcc.withdraw(amt);
+                toAcc.deposit(amt);
+            } // release lock of toAcc
+        } // release lock of fromAcc
+        
+    }
+```
+
+4) ThreadPool
+5) Thread can't return a value
+
+===============
