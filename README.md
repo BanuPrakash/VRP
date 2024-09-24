@@ -247,3 +247,35 @@ Thread t2 --> SB451 to SB102 9000
 5) Thread can't return a value
 
 ===============
+
+
+Doug Lea: Concurrent Programming in Java
+Lock --> Programmatically locking and unlocking
+
+Deadlock Solution:
+```
+Thread t1 --> SB102 to SB451 5000
+Thread t2 --> SB451 to SB102 9000
+
+public  void transferFunds(Account fromAcc, Account toAcc, double amt) {
+            // T1 try to get SB102, T2 gets SB451 lock
+            if(fromAcc.balLock.tryLock(2, TimeUnit.SECONDS)) {
+                 try {
+                    // T1 try to get SB451
+                    if(toAcc.balLock.tryLock(2, TimeUnit.SECONDS)) {
+                          try {
+                            fromAcc.withdraw(amt);
+                            toAcc.deposit(amt);
+                        }
+                        finally {
+                            toAcc.balLock.unlock();
+                        }
+                    }
+                 } finally{
+                    fromAcc.balLock.unlock(); // T1 releases SB102
+                 }
+       }
+        
+    }
+
+```
