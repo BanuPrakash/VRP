@@ -172,3 +172,7 @@ A member is said to be thread safe if it doesn't get effected in multi-threaded 
 * instance variables: reside on heap area --> shared by threads --> not safe
 * immutable objects: reside on heap --> shared --> safe
 
+wait() and notify()/notifyAll() can be used for inter-thread communication
+
+
+

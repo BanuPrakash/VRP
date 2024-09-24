@@ -4,7 +4,7 @@ public class BankClient {
         TransactionThread t1 =
                 new TransactionThread(account, "Ria", TransactionType.CREDIT, 3500);
         TransactionThread t2 =
-                new TransactionThread(account, "\tSwetha", TransactionType.DEBIT, 2000);
+                new TransactionThread(account, "\tSwetha", TransactionType.DEBIT, 7000);
 
         TransactionThread t3 =
                 new TransactionThread(account, "\t\tAnna", TransactionType.CREDIT, 2500);
@@ -12,8 +12,14 @@ public class BankClient {
         t1.setName("Ria Thread");
         t2.setName("Swetha Thread");
         t3.setName("Anna Thread");
-        t1.start();
         t2.start();
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        t1.start();
+
         t3.start(); // main, t1, t2, t3 are ready / runnable
         System.out.println();
         try {
