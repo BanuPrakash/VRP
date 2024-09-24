@@ -9,10 +9,13 @@ public class BankClient {
         TransactionThread t3 =
                 new TransactionThread(account, "\t\tAnna", TransactionType.CREDIT, 2500);
 
+        t1.setName("Ria Thread");
+        t2.setName("Swetha Thread");
+        t3.setName("Anna Thread");
         t1.start();
         t2.start();
         t3.start(); // main, t1, t2, t3 are ready / runnable
-
+        System.out.println();
         try {
             t1.join(); // barrier , main thread waits for t1 to complete
             t2.join();// barrier , main thread waits for t2 to complete
