@@ -1,8 +1,10 @@
 package java5;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
 
 public class Account {
     private double balance; //state --> heap --> instance variable --> Not safe
@@ -13,6 +15,11 @@ public class Account {
         this.balance = amt;
     }
 
+    public void updateProfile() {
+        if(profileLock.tryLock()) {
+            //
+        }
+    }
     public void deposit(String name, double amt){
         try {
            balLock.lock();
