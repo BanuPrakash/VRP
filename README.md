@@ -133,3 +133,42 @@ https://rxmarbles.com/
 ==================================================
 
 Java Concurrency
+
+Process: Program in Execution.
+Every process needs to have at least one unit of work running --> Thread
+
+Single Threaded application: notepad, onenote, calculator
+
+Multi-threaded application: Word, Intellij, Browser, excel, ....
+
+Word: typing, spell check, grammer check, auto save,....
+
+Uses of multi-threaded application:
+1) Avoid starvation
+2) Optimization of resource usage [Threads are light weight process, threads shares resources allocted for process [ loaded classes, objects]]
+
+Word:
+Document class
+document object --> HEAP area
+
+Java provides:
+1) Runnable interface
+interface Runnable {
+    void run(); // entry point for a thread, just like main() for main thread
+}
+
+2) Thread class ==> implements Runnable
+contains life-cycle methods to start, sleep, suspend, resume, join, interrupt, stop..
+
+stop, suspend and resume are deprecated --> Not supposed to be used.
+
+======
+
+Thread Safe:
+A member is said to be thread safe if it doesn't get effected in multi-threaded environment
+
+* local variables: reside on stack, each thread has a seperate stack --> safe
+* static variables: reside in metaspace along with class data --> shared by all threads --> not safe
+* instance variables: reside on heap area --> shared by threads --> not safe
+* immutable objects: reside on heap --> shared --> safe
+
