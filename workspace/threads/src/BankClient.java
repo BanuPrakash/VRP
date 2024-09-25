@@ -1,6 +1,23 @@
+import callableex.Flight;
+import callableex.FlightsThread;
+import callableex.Hotel;
+import callableex.HotelsThread;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class BankClient {
     public static void main(String[] args) {
         Account account = new Account(5000);
+//        ExecutorService service = Executors.newFixedThreadPool(10);
+//        service.submit(new TransactionThread(account,
+//                "Ria", TransactionType.CREDIT, 3500));
+//
+//        service.submit(new TransactionThread(account, "\tSwetha", TransactionType.DEBIT, 7000));
+
+
         TransactionThread t1 =
                 new TransactionThread(account, "Ria", TransactionType.CREDIT, 3500);
         TransactionThread t2 =

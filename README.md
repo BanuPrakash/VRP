@@ -285,6 +285,138 @@ The Callable interface is similar to Runnable, in that both are designed for cla
 Always prefer ThreadPool instead of start()
 latency involved in creating and destroying thread
 
+=====================================================
+Maven / gradle: build tool
+* manages dependencies [your project depends on many 3rd party libraries]
+can also manage transative dependency.
+
+* goals: compile, test, packaging, deploy, ....
+
+Maven projects are portable across IDEs
+
+=============
+
+Day 3:
+
+Maven
+Docker :Platform with OS virtualization; we can have applications running <<container>>
+images are there for every applictaiont in Dokcer Hub
+
+=============
+
+```
+
+docker exec -it local-mysql bash
+
+bash-4.4# mysql -u root -p
+Enter password: Welcome123
+mysql> create database VRP;
+mysql> use VRP;
+mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
+
+mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
+
+mysql> insert into products values (0, 'iPhone 16', 980000.00, 100);
+
+
+mysql> insert into products values (0, 'Macbook Pro', 2350000.00, 100);
+
+
+mysql> select * from products;
++----+-------------+---------+----------+
+| id | name        | price   | quantity |
++----+-------------+---------+----------+
+|  1 | iPhone 16   |  980000 |      100 |
+|  2 | Macbook Pro | 2350000 |      100 |
++----+-------------+---------+----------+
+2 rows in set (0.00 sec)
+
+```
+
+Java <---> database mysql
+
+JDBC --> Java Database Connectivity --> Integration Library
+
+JDBC is a set of interfaces; implementation classes are provided by database vendors
+
+```
+Steps:
+1) Load 3rd party driver classes
+
+Class.forName("com.mysql.cj.jdbc.Driver")
+
+2) Establish a database Connection
+
+Connection con = DriverManager.getConnection(URL, USER, PWD);
+
+URL:
+jdbc:thin:oracle://123.11.55.11:1521:empdb
+
+jdbc:mysql://localhost:3306/empdb
+
+
+3) Send SQL:
+3.1) Statement
+SQL is fixed and same for every execution
+select * from products;
+
+3.2) PreparedStatement
+SQL needs IN parameters
+
+select * from products where id = ?
+
+insert into products values(0, ?, ?, ?)
+
+3.3) CallableStatement
+
+is used to invoke stored procedures of database
+
+{call TRANSACTION('SB103', 'SB545', 56000.00)}
+
+4) 
+int executeUpdate(); // for INSERT, DELETE and UPDATE SQL
+ResultSet executeQuery(); // SELECT
+
+ResultSet is a cursor to fetched records
+
+boolean next()
+
+rs.getString("CustomerID")
+
+rs.getInt("Age")
+
+5) release resources in finally block
+finally executes if exceptions occurs or not
+
+
+```
+
+public class ProductDaoJdbcImpl implements ProductDao {
+     public void addProduct(Product product) throws DaoException {
+        try {
+             // SQL 
+        } catch(SQLException ex) {
+            // based on error code
+            throw new DaoException("unable to add product", ex);
+        }
+      
+       
+     }
+   // List<Product> getProducts();
+}
+
+
+
+
+try {
+    Product p = new Product(...);
+    ProductDao productDao = new ProductDaoJdbcImpl();
+    productDao.addProduct(p);
+} catch(DaoException ex) {
+    ex.printStackTrace();
+}
+
+
 
 
 
