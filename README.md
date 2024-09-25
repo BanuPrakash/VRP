@@ -417,6 +417,45 @@ try {
 }
 
 
+=============
+
+Annotation: Metadata
+
+Who uses it?
+* COMPILER ==> Annotation data is only present in source ==> bytecode won;t have it
+* CLASSLOADER ==> .class contains metadata, gets removed from METASPACE
+* RUNTIME ==> metadata is available in JRE [ metaspace]
+
+Where can i use it?
+* TYPE
+* METHOD
+* FIELDS
+* PARAMETERS
+
+
+@OS("andriod")
+public class CandyCrush extends Game {
+
+}
+
+@Table(x="products")
+public class Product {
+
+    @Column(name="PRD_NAME")
+    name;
+
+    @Column(name="AMT", type="double")
+    price:
+}
+
+List<?> list = 
+
+
+@Table(name="books")
+public class Book {
+
+}
+
 
 
 
