@@ -433,28 +433,97 @@ Where can i use it?
 * PARAMETERS
 
 
-@OS("andriod")
-public class CandyCrush extends Game {
+=============================
 
+Database application ===> Web application
+JSE --> Java Std Edition
+JEE --> Java Enterprise Edition
+--> build heterogenoius applications like web, enteripse applications
+
+Web application development:
+* Web Server
+* Servlet Container / Web Container / Servlet engine
+
+Servlet engine: Tomcat / Jetty / Netty ....
+
+WebSphere [ Tomcat engine]
+JBOSS [ Tomcat engine]
+Apache [ Netty / Jetty / Tomcat]
+GlassFish [Jetty / Tomcat...]
+
+jar --> Java Archive
+war --> web archive
+
+```
+database.war
+    |
+    WEB-INF
+     |
+        classes
+            |
+            pkg
+                ....class
+                ...class
+                ...class
+        web.xml
+    index.html
+    style.css
+```
+
+web.xml ---> Deployment descriptor
+
+Servlet --> java server side code
+
+```
+public class RegisterServlet extends HttpServlet {
+    // HTTP GET method
+    void doGet(HttpServletRequest req, HttpServletResponse res) {
+
+    }
+    // HTTP POST method
+    void doPut(HttpServletRequest req, HttpServletResponse res) {
+
+    }
 }
 
-@Table(x="products")
-public class Product {
+public class LoginServlet extends HttpServlet {
+    // HTTP GET method
+    void doGet(HttpServletRequest req, HttpServletResponse res) {
 
-    @Column(name="PRD_NAME")
-    name;
+    }
+    // HTTP POST method
+    void doPut(HttpServletRequest req, HttpServletResponse res) {
 
-    @Column(name="AMT", type="double")
-    price:
+    }
 }
 
-List<?> list = 
+web.xml
+<servlet>
+    <servlet-name>Reg</servlet-name>
+    <servlet-class>pkg.RegisterServlet</servlet-class>
+</servlet>
+<servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>pkg.LoginServlet</servlet-class>
+</servlet>
+
+<servlet-mappin>
+      <servlet-name>Reg</servlet-name>
+      <url-pattern>/register</url-pattern>
+</serlvet-mapping>
+<servlet-mappin>
+      <servlet-name>login</servlet-name>
+      <url-pattern>/login</url-pattern>
+</serlvet-mapping>
+```
+
+HttpServletRequest --> encapsulates all data from client : Form data / browser / os
+HttpServletResponse --> used to write response back to client
 
 
-@Table(name="books")
-public class Book {
+New Apis: we can use annotations instead of web.xml for deployment descriptor
 
-}
+
 
 
 
