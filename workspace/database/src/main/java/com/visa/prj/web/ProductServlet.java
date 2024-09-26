@@ -39,7 +39,7 @@ public class ProductServlet extends HttpServlet {
 //            out.print("</tr>");
 //        }
 //        out.print("</table>");
-//        out.print("<a href='index.html'>Back</a>");
+//        out.print("<a href='index.jsp'>Back</a>");
 //        out.print("</body></html>");
 //    }
 
@@ -65,7 +65,7 @@ public class ProductServlet extends HttpServlet {
         try {
             productDao.addProduct(p);
             // client side forwarding
-            resp.sendRedirect("index.html");
+            resp.sendRedirect("index.jsp?msg=Product added sucessfully!!!");
         } catch (DaoException ex) {
             resp.sendRedirect("error.jsp?msg=" + ex.getMessage());
         }

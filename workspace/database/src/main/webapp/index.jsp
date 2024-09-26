@@ -6,6 +6,9 @@
 </head>
 <body>
     <h1>Product Application</h1>
+    <div>
+        ${param.msg}
+    </div>
     <a href="products">Get All Products</a> <br /> <!-- METHOD of REQUEST is GET -->
     <a href="productForm.html">Add a new Product</a> <br />
 </body>

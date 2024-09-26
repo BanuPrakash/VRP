@@ -554,6 +554,13 @@ Client side rendering: data is converted into various formats like XML / JSON an
 Client consumes this and creates presentation
 Good part: Android / Swift / Flutter/ TV / Web-React / Angular/ Svelte
 
+---
+
+Client Side redirection
+
+
+
+
 
 
 
