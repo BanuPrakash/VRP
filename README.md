@@ -497,6 +497,7 @@ public class LoginServlet extends HttpServlet {
     }
 }
 
+
 web.xml
 <servlet>
     <servlet-name>Reg</servlet-name>
@@ -522,6 +523,12 @@ HttpServletResponse --> used to write response back to client
 
 
 New Apis: we can use annotations instead of web.xml for deployment descriptor
+
+mvn compile
+
+mvn package
+mvn jetty:run
+http://localhost:8080/
 
 
 
