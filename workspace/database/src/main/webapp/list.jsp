@@ -10,12 +10,17 @@
 <html>
 <head>
     <title>Title</title>
+    <STYLE>
+        .tbl {
+            border: 2px solid bisque;
+        }
+    </STYLE>
 </head>
 <body>
     <h1>Product List</h1>
     Welcome ${user} <br />
     <a href="logout">Logout</a>
-    <table border="1">
+    <table class="tbl">
             <thead>
             <tr>
                 <th>ID</th> <th>Name</th><th>Price</th> <th>Delete</th>

@@ -560,9 +560,14 @@ Session Tracking: ability to web application to track conversational state of cl
 
 HttpSession API: Servlet api for Session Tracking
 
-cookie
+Filter: are for interceptor pattern
+They don't have main logic, but can be used along with main logic
+* SecurityFilter
+* Logging
+* Profile
+* Encrpt/decrypt
+..
 
-Servlet/JSP
 
 
 
