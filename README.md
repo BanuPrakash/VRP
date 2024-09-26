@@ -312,7 +312,6 @@ bash-4.4# mysql -u root -p
 Enter password: Welcome123
 mysql> create database VRP;
 mysql> use VRP;
-mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
 
 mysql> create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
 
@@ -531,13 +530,29 @@ mvn jetty:run
 http://localhost:8080/
 
 
+Address bar and hyperlink are GET request
+default FORM method is also GET
+
+mvn jetty:run
+    * mvn compile
+    * starting the jetty server
+    * war file is built and deployed on jetty
+
+mvn clean compile test package jetty:run
 
 
+MVC architectural pattern:
+M --> model : business data and logic
+V -> View is for presentation: HTML, CSS, JS and JSP pages
+C --> Controller: application logic --> Servlet
 
+SSR or CSR
+Server Side Rendering: data to presentation is done on server; presentation page [HTML] is sent to client
+JSP / thymeleaf as templates for SSR
 
-
-
-
+Client side rendering: data is converted into various formats like XML / JSON and sent to client.
+Client consumes this and creates presentation
+Good part: Android / Swift / Flutter/ TV / Web-React / Angular/ Svelte
 
 
 
