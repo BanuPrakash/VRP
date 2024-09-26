@@ -555,8 +555,18 @@ Client consumes this and creates presentation
 Good part: Android / Swift / Flutter/ TV / Web-React / Angular/ Svelte
 
 ---
+HTTP protocol is a stateless protocol: doesn't keep track of conversational state of client.
+Session Tracking: ability to web application to track conversational state of client.
 
-Client Side redirection
+HttpSession API: Servlet api for Session Tracking
+
+cookie
+
+Servlet/JSP
+
+
+
+
 
 
 

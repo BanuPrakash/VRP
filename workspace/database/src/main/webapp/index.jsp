@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Product Application</h1>
+    Welcome ${user} <br />
+    <a href="logout">Logout</a>
     <div>
         ${param.msg}
     </div>

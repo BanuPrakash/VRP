@@ -49,8 +49,8 @@ public class ProductServlet extends HttpServlet {
         ProductDao productDao = new ProductDaoJdbcImpl();
         List<Product> products = productDao.getProducts();
         req.setAttribute("products", products);
-        // server side forwarding
-        req.getRequestDispatcher("list.jsp").forward(req, resp);
+     req.getRequestDispatcher("list.jsp").forward(req, resp); // server side redirection
+//        resp.sendRedirect("list.jsp"); // client side redirection
     }
 
     @Override
@@ -65,7 +65,7 @@ public class ProductServlet extends HttpServlet {
         try {
             productDao.addProduct(p);
             // client side forwarding
-            resp.sendRedirect("index.jsp?msg=Product added sucessfully!!!");
+            resp.sendRedirect("index.jsp?msg=Product added successfully!!!");
         } catch (DaoException ex) {
             resp.sendRedirect("error.jsp?msg=" + ex.getMessage());
         }

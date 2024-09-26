@@ -13,6 +13,8 @@
 </head>
 <body>
     <h1>Product List</h1>
+    Welcome ${user} <br />
+    <a href="logout">Logout</a>
     <table border="1">
             <thead>
             <tr>
