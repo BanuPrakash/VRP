@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 @SpringBootApplication
 public class SpringdemoApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
        ApplicationContext ctx =  SpringApplication.run(SpringdemoApplication.class, args);
 
         AppService service = ctx.getBean("appService", AppService.class);
