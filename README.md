@@ -703,3 +703,68 @@ ctx.refresh();
 * @ComponentScan --> com.visa.springdemo;
 * @EnableAutoConfiguration --> highly opiniated config objects to be created
 * @Configuration
+
+Problem:
+```
+Field employeeDao in com.visa.springdemo.service.AppService required a single bean, but 2 were found:
+	- employeeDaoJdbcImpl: 
+	- employeeDaoMongoImpl:
+```
+
+Solution 1: using @Primary
+```
+@Repository
+@Primary
+public class EmployeeDaoMongoImpl implements EmployeeDao{
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao{
+
+```
+
+Solution 2: using @Qualifier
+```
+@Repository
+public class EmployeeDaoMongoImpl implements EmployeeDao{
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao{
+
+@Service
+public class AppService {
+    @Autowired
+    @Qualifier("employeeDaoMongoImpl")
+    private EmployeeDao employeeDao;
+```
+
+Solution 3: using @Profile
+
+```
+@Repository
+@Profile("dev")
+public class EmployeeDaoJdbcImpl implements EmployeeDao{
+@Repository
+@Profile("prod")
+public class EmployeeDaoMongoImpl implements EmployeeDao{
+
+@Service
+public class AppService {
+    @Autowired
+    private EmployeeDao employeeDao;
+
+resources
+application.properties
+spring.profiles.active=prod
+
+or command line argument << more precidence>>
+Edit Configuration
+Active Profile: dev
+
+```
+
+Solution 4: @ConditionalOnMissingBean
+
+```
+@Repository
+@ConditionalOnMissingBean(name="employeeDaoJdbcImpl")
+public class EmployeeDaoMongoImpl implements EmployeeDao{
+```

@@ -14,9 +14,9 @@ public class SpringdemoApplication {
         AppService service = ctx.getBean("appService", AppService.class);
         service.insert();
 
-       for(String bean: ctx.getBeanDefinitionNames()) {
-           System.out.println(bean);
-       }
+//       for(String bean: ctx.getBeanDefinitionNames()) {
+//           System.out.println(bean);
+//       }
     }
 
 }
