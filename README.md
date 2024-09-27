@@ -850,7 +850,46 @@ spring.jpa.hibernate.ddl-auto=create
 spring.jpa.hibernate.ddl-auto=verify
 * map class to existing table; don't alow create / alter
 
+SQL vs JPQL
 
+2) Get first name and lastname customers
+select fname, lname from customers
 
+Without cascade:
+1 order has 4 items;
+orderRepo.save(order);
+itemRepo.save(i1);
+itemRepo.save(i2);
+itemRepo.save(i3);
+itemRepo.save(i4);
 
+To Delete
+orderRepo.delete(order);
+itemRepo.delete(i1);
+itemRepo.delete(i2);
+itemRepo.delete(i3);
+itemRepo.delete(i4);
+
+WithCascade:
+ @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_fk")
+    List<LineItem> items = new ArrayList<>();
+
+1 order has 4 items;
+orderRepo.save(order); --> saves items also
+
+orderRepo.delete(order); --> deletes items also
+
+Default is LAZY fetcing:
+List<Order> orders = orderRepo.findAll(); // select * from orders;
+for(Order order : orders) {
+    List<LineItems> = order.getLineItem(); // select * from line_items where order_fk = ?
+}
+
+===
+   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_fk")
+    List<LineItem> items = new ArrayList<>();
+
+List<Order> orders = orderRepo.findAll(); // select * from orders; --> fetchs line_items of each order
 

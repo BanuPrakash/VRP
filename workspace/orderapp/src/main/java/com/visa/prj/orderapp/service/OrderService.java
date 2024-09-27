@@ -9,12 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class OrderService {
     private final CustomerRepository customerRepository; // constructor wiring
     private final ProductRepository productRepository; // constructor wiring
+
+    public  Product getProductById(int id) {
+        Optional<Product> opt = productRepository.findById(id);
+        if(opt.isPresent()) {
+            return opt.get();
+        }
+        return null;
+    }
 
     public List<Product> getProducts() {
         return productRepository.findAll();
