@@ -33,5 +33,5 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_fk")
-    List<LineItem> items = new ArrayList<>();
+        List<LineItem> items = new ArrayList<>();
 }

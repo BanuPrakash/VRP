@@ -850,10 +850,8 @@ spring.jpa.hibernate.ddl-auto=create
 spring.jpa.hibernate.ddl-auto=verify
 * map class to existing table; don't alow create / alter
 
-SQL vs JPQL
 
-2) Get first name and lastname customers
-select fname, lname from customers
+```
 
 Without cascade:
 1 order has 4 items;
@@ -892,4 +890,20 @@ for(Order order : orders) {
     List<LineItem> items = new ArrayList<>();
 
 List<Order> orders = orderRepo.findAll(); // select * from orders; --> fetchs line_items of each order
+```
+===========================
 
+Order data looks like:
+
+```
+    {
+        "customer": {
+            "email": "Uma@visa.com"
+        },
+        "items": [
+            {"product": {"id": 2}, "qty": 1},
+            {"product": {"id": 1}, "qty" : 2}
+        ]
+    }
+
+```
