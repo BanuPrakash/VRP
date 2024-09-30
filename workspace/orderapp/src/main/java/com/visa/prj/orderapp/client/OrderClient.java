@@ -1,5 +1,6 @@
 package com.visa.prj.orderapp.client;
 
+import com.visa.prj.orderapp.dto.OrderReport;
 import com.visa.prj.orderapp.entity.Customer;
 import com.visa.prj.orderapp.entity.LineItem;
 import com.visa.prj.orderapp.entity.Order;
@@ -19,7 +20,27 @@ public class OrderClient implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        newOrder();
+     //   newOrder();
+//        getOrders();
+        printOrders();
+    }
+
+    private void printOrders() {
+        List<OrderReport> reports = service.getReport();
+        for(OrderReport report : reports) {
+            System.out.println(report.firstName() +", " + report.email() +", " + report.orderDate() +", " + report.total());
+        }
+    }
+
+    private void getOrders() {
+        List<Order> orders = service.getOrders();
+        for(Order order : orders) {
+            System.out.println(order.getCustomer().getFirstName() + ", "  + order.getOrderDate() + ", " + order.getTotal());
+            var items = order.getItems(); // proxy
+            for(LineItem item : items) {
+                System.out.println(item.getProduct().getName() + ", " + item.getQty() +", " + item.getAmount());
+            }
+        }
     }
 
     private void newOrder() {

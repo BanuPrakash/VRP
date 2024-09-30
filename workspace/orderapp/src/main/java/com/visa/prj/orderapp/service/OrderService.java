@@ -3,6 +3,7 @@ package com.visa.prj.orderapp.service;
 import com.visa.prj.orderapp.dao.CustomerRepository;
 import com.visa.prj.orderapp.dao.OrderRepository;
 import com.visa.prj.orderapp.dao.ProductRepository;
+import com.visa.prj.orderapp.dto.OrderReport;
 import com.visa.prj.orderapp.entity.Customer;
 import com.visa.prj.orderapp.entity.LineItem;
 import com.visa.prj.orderapp.entity.Order;
@@ -22,6 +23,9 @@ public class OrderService {
     private final ProductRepository productRepository; // constructor wiring
     private final OrderRepository orderRepository;
 
+    public List<OrderReport> getReport() {
+        return  orderRepository.getReport();
+    }
     /*
           {
         "customer": {

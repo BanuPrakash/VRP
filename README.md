@@ -907,3 +907,10 @@ Order data looks like:
     }
 
 ```
+
+Spring uses ByteBuddy / Java Assist / CGLib libraries
+
+SCALAR Values;
+
+select c.fname, c.email, o.order_date, o.total  from orders o inner join customers c on c.email = o.customer_fk;
+
