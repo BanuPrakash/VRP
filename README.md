@@ -914,3 +914,97 @@ SCALAR Values;
 
 select c.fname, c.email, o.order_date, o.total  from orders o inner join customers c on c.email = o.customer_fk;
 
+================
+
+one-to-one relationship
+
+Employee
+    email
+    firstName
+    lastname
+
+Laptop
+    serialNo
+    make
+    size
+
+employees
+email           | fname     | lname
+a@visa.com          Asha        Rao
+b@visa.com          Bharthi     Sharma
+
+laptop
+serial_no | make | size | employee_fk
+3434        Mac     13      a@visa.com  
+6343443     Intel   15
+
+================
+
+students
+sid | name      |start_date
+1       Asha
+
+course
+cid | name      |start_date
+1       Spring      
+2       React
+
+students_course
+cid | sid | start_date | end_date | grade
+1     1
+2     1
+
+====================
+
+Aspect Oriented Programming (AOP)
+
+* lot of Cross-cutting concerns which leads to code tangling and code scattering
+```
+public void transferFunds(Account fromAcc, Account toAcc, double amt) {
+    // start time
+    if(securityContext.getPriniciple().getAuthorities() === WRITE_ROLE) {
+        log.info("started transaction");
+        Connection con = ds.getConnection();
+        con.setAutoCommit(false); // begin Transaction
+        log.info("transaction started");
+        updatefromAcc(amt); //actual logic
+        log.info("amount debitted ...");
+        updatetoAcc(amt); // actual logic
+        ...
+
+    // end_time
+    }
+}
+```
+
+Aspect: code which is not a part of main logic,but can be used along with main logic. generally a cross cutting concern
+Examples: Transaction, Security, Profile, Log, ExceptionHandler
+
+JoinPoint: place in your code where aspect can be weaved
+method and exception
+
+PointCut: selected joinpoint
+
+Advice: before, after, around, afterReturning, afterThrowing
+
+
+
+```
+  @Around("execution(* com.visa.prj.orderapp.service.*.*(..))")
+    public Object doTransaction(ProceedingJoinPoint pjp) throws Throwable {
+        Transaction tx = ctx.getTransaction();
+
+        try {
+            pjp.proceed();
+            tx.commit();
+        } catch(Exception ex) {
+            tx.rollback();
+        }
+
+    }
+
+```
+
+
+
+

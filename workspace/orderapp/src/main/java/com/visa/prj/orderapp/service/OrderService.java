@@ -23,6 +23,9 @@ public class OrderService {
     private final ProductRepository productRepository; // constructor wiring
     private final OrderRepository orderRepository;
 
+    public List<Product> byRange(double low, double high) {
+        return productRepository.findByPriceBetween(low, high);
+    }
     public List<OrderReport> getReport() {
         return  orderRepository.getReport();
     }

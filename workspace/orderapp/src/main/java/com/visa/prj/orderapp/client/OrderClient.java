@@ -22,7 +22,7 @@ public class OrderClient implements CommandLineRunner {
     public void run(String... args) throws Exception {
      //   newOrder();
 //        getOrders();
-        printOrders();
+ //       printOrders();
     }
 
     private void printOrders() {
