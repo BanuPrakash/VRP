@@ -1,6 +1,7 @@
 package com.visa.prj.orderapp.client;
 
 import com.visa.prj.orderapp.entity.Product;
+import com.visa.prj.orderapp.service.EntityNotFoundException;
 import com.visa.prj.orderapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,18 @@ public class ProductClient implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //           printProducts();
-        printByRange();
+      //  printByRange();
+        getById();
+    }
+
+    private void getById() {
+        try {
+            Product p = service.getProductById(19);
+            System.out.println(p);
+        } catch (EntityNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void printByRange() {

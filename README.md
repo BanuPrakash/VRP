@@ -987,7 +987,7 @@ PointCut: selected joinpoint
 
 Advice: before, after, around, afterReturning, afterThrowing
 
-
+@Around( "@annotation(Transactional)")
 
 ```
   @Around("execution(* com.visa.prj.orderapp.service.*.*(..))")
@@ -1004,7 +1004,33 @@ Advice: before, after, around, afterReturning, afterThrowing
     }
 
 ```
+New Spring boot project:
+lombok, mysql, jpa
 
+spring.datasource.url=jdbc:mysql://localhost:3306/TICKET_TRACKER?createDatabaseIfNotExist=true
 
+```
+Ticket tracker application:
 
+Employee
+email
+
+Project 
+pid <<AUTO INCREMENT>> | name | client
+
+Ticket
+ticket_id | raised_by <<FK>> | project_fk | issue | raised_date | resolved_by <<FK to emp>> | resolved_date | resolve_text
+
+1) populate projects and employees
+2) raise a ticket
+
+ticket_id | raised_by <<FK>> | project_fk | issue | raised_date  | 
+24          george@visa.com     534         MAven   12-SEP-2024 4:50:20
+other fields will be null
+
+3) resolve a ticket ==> try DIRTY CHECKING
+pick a ticket based on ticket_id
+set resolved_by, resolved_date, resolve_text
+
+```
 

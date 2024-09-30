@@ -5,6 +5,7 @@ import com.visa.prj.orderapp.entity.Customer;
 import com.visa.prj.orderapp.entity.LineItem;
 import com.visa.prj.orderapp.entity.Order;
 import com.visa.prj.orderapp.entity.Product;
+import com.visa.prj.orderapp.service.EntityNotFoundException;
 import com.visa.prj.orderapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -67,7 +68,11 @@ public class OrderClient implements CommandLineRunner {
 
         order.setItems(items);
 
-        System.out.println(service.placeOrder(order));
+        try {
+            System.out.println(service.placeOrder(order));
+        } catch (EntityNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

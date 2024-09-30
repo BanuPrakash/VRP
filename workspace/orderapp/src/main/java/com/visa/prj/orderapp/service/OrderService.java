@@ -1,5 +1,6 @@
 package com.visa.prj.orderapp.service;
 
+import com.visa.prj.orderapp.aop.Tx;
 import com.visa.prj.orderapp.dao.CustomerRepository;
 import com.visa.prj.orderapp.dao.OrderRepository;
 import com.visa.prj.orderapp.dao.ProductRepository;
@@ -41,8 +42,9 @@ public class OrderService {
     }
 
      */
+    @Tx
     @Transactional
-    public  String placeOrder(Order order) {
+    public  String placeOrder(Order order) throws EntityNotFoundException{
         double total = 0.0;
         List<LineItem> items = order.getItems();
         for(LineItem item : items) {
@@ -64,12 +66,12 @@ public class OrderService {
     }
 
 
-    public  Product getProductById(int id) {
+    public  Product getProductById(int id) throws  EntityNotFoundException {
         Optional<Product> opt = productRepository.findById(id);
         if(opt.isPresent()) {
             return opt.get();
         }
-        return null;
+        throw  new EntityNotFoundException("Product with id : " + id + " doesn't exist!!!");
     }
 
     public List<Product> getProducts() {
