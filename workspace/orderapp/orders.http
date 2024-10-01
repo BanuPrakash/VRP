@@ -1,0 +1,22 @@
+### @name="New Order"
+POST http://localhost:8080/api/orders
+Accept: application/json
+Content-Type: application/json
+
+{
+  "customer": {
+    "email": "ana@visa.com"
+  },
+  "items": [
+    {"product": {"id": 1}, "qty": 3},
+    {"product": {"id": 4}, "qty" : 1}
+  ]
+}
+
+### @name="get orders"
+GET http://localhost:8080/api/orders
+Accept: application/json
+
+### @name="get order report"
+GET http://localhost:8080/api/orders/report
+Accept: application/json

@@ -20,12 +20,12 @@ public class ProductClient implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //           printProducts();
       //  printByRange();
-        getById();
+       // getById();
     }
 
     private void getById() {
         try {
-            Product p = service.getProductById(19);
+            Product p = service.getProductById(1);
             System.out.println(p);
         } catch (EntityNotFoundException e) {
             throw new RuntimeException(e);

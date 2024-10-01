@@ -1,0 +1,28 @@
+### @name="get all products"
+GET http://localhost:8080/api/products
+Accept: application/json
+
+### @name="get product by ID"
+GET http://localhost:8080/api/products/2
+Accept: application/json
+
+### @name="add product"
+POST http://localhost:8080/api/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Bisleri",
+  "price": 100.00,
+  "quantity": 100
+}
+
+
+### @name="update product"
+PUT http://localhost:8080/api/products/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "price": 256000.00
+}

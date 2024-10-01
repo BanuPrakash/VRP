@@ -94,4 +94,10 @@ public class OrderService {
         return customerRepository.findAll();
     }
 
+    @Transactional
+    public Product updateProductEntity(int id, Product p) throws  EntityNotFoundException{
+        productRepository.updateProduct(id, p.getPrice());
+        return getProductById(id);
+    }
+
 }
