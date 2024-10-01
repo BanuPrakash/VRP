@@ -4,7 +4,9 @@ import com.visa.prj.orderapp.dto.OrderReport;
 import com.visa.prj.orderapp.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
@@ -19,5 +21,8 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             " from Order o " +
             " inner join o.customer c")
     List<OrderReport> getReport();
+
+    @Query("from Order where DATE(orderDate) = :od")
+    List<Order> getOrderForGivenDate(@Param("od") Date orderDate);
 
 }

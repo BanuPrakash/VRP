@@ -19,10 +19,10 @@ Content-Type: application/json
 
 
 ### @name="update product"
-PUT http://localhost:8080/api/products/2
+PATCH http://localhost:8080/api/products/2
 Accept: application/json
 Content-Type: application/json
 
 {
-  "price": 256000.00
+  "price": 259990.00
 }

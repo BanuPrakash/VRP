@@ -1132,4 +1132,33 @@ public class ProductController {
 ```
 
 PostMAN is a REST client.
+https://jsonpatch.com/
+
+JSON-PATCH:
+```
+PATCH http://localhost:8080/api/employees/123
+Content-Type: application/json-patch+json
+Accept: application/json
+
+[
+  {"op": "replace", "path":"/title", "value":  "Team lead"},
+  {"op": "remove", "path" :  "/personal/phone"},
+  {"op":  "add", "path" : "/personal/email", "value": "smitha@visa.com"},
+  {"op": "add", "path":  "/programmingSkills/1", "value":  "Spring Boot"}
+]
+
+
+{"id":123,
+"title":"Team lead",
+"personal":{"firstName":"Smitha","lastName":"Patil","email":"smitha@visa.com"},
+"programmingSkills":["Java","Spring Boot","Python"]}
+
+employee = mapper.treeToValue(target, Employee.class);
+employeeService.updateEmployee(employee);
+
+updateEmployee(Employee e) {
+    employeeRepo.save(e);
+}
+
+```
 

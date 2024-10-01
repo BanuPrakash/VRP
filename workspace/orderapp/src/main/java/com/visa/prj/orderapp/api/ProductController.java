@@ -39,7 +39,8 @@ public class ProductController {
         return  service.addProduct(p);
     }
 
-    @PutMapping("/{id}")
+//    @PutMapping ("/{id}")
+    @PatchMapping ("/{id}")
     public Product update(@PathVariable("id") int id, @RequestBody Product p) throws EntityNotFoundException{
         return service.updateProductEntity(id, p);
     }
