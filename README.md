@@ -1005,7 +1005,7 @@ Advice: before, after, around, afterReturning, afterThrowing
 
 ```
 New Spring boot project:
-lombok, mysql, jpa
+lombok, mysql, jpa, web
 
 spring.datasource.url=jdbc:mysql://localhost:3306/TICKET_TRACKER?createDatabaseIfNotExist=true
 
@@ -1033,4 +1033,102 @@ pick a ticket based on ticket_id
 set resolved_by, resolved_date, resolve_text
 
 ```
+SQL:
+```
+SELECT * FROM `reservations` WHERE `vehicle_id`=1 AND (`start_date`>".$start_date." AND `end_date`<".$end_date.") OR (`start_date`<".$start_date." AND `end_date`>".$end_date.") OR (`start_date<".$end_date." AND `end_date`>".$end_date.") OR (`start_date`<".$start_date." AND `end_date`>".$start_date.")
+```
+=========
 
+Building RESTful WS --> Client side Rendering
+Spring Web MVC module
+
+```
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+  </dependency>
+```
+* Provides embedded Tomcat Servlet Container
+* provided DispatcherServlet with URL-pattern as *
+* HandlerMapping: map urls to @Controller or @RestController classes
+* ContentNegotiationHandler for Java<--->JSON in the form of Jackson library
+Java<--->JSON can be done using :Jackson, jettison, GSON, Moxy,..
+
+RESTful WS: REpresentational State Transfer
+* Resource: anything present on server like files/ database / printer
+* representation: state of the resource at given point of time
+* ContentNegotiationHandler:
+    representation to various format based on client request
+    HTTP header
+    Accept: application/json
+    Accept: text/xml
+
+-----
+Resources are identified by URLs and actions by HTTP methods
+
+```
+* GET http://server.com/api/products
+get all products 
+
+* GET http://server.com/api/products/4
+* Path parameter [/] is generally used to get by PK
+get product whose id is 4
+
+* GET http://server.com/api/customers/banu@gmail.com/orders
+
+* GET http://server.com/api/products?page=1&limit=20
+* GET http://server.com/api/products?low=1000&high=20000
+use Query parameter [?] --> sub set [ filter]
+```
+-----
+
+```
+* POST http://server.com/api/products
+Content-type:application/json
+
+payload:
+{
+    "name":"MS Mouse",
+    "price": 2323,
+    "quantity": 3434
+}
+```
+Avoid this end-point
+* DELETE http://server.com/api/products/3
+delete a product whose id is "4"
+
+```
+Update 
+* PUT http://server.com/api/products/3
+Content-type:application/json
+
+payload:
+{
+    "price": 2323
+}
+
+Optionally we can use PATCH instead of PUT for Update
+```
+
+@Controller ---> sends rendered pages
+@RestController --> sends json/xml
+
+```
+@RestController
+@RequestMapping("api/products")
+public class ProductController {
+    @GetMapping()
+    public List<Product> getProducts() {
+        service.getProducts();
+    }
+
+    @PostMapping()
+    public Product addProduct(@RequestBody Product p) {
+        service.addProduct(p);
+    }
+}
+
+
+```
+
+Resume after Tea break
