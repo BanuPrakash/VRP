@@ -9,11 +9,13 @@ Accept: application/json
 ### @name="add product"
 POST http://localhost:8080/api/products
 Accept: application/json
+Accept-Language: hi
 Content-Type: application/json
+
 
 {
   "price": -100.00,
-  "quantity": 0
+  "quantity": -33
 }
 
 

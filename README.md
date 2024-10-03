@@ -1229,7 +1229,8 @@ No Spring Container intialzed with beans
 only ProductController is created as bean
 
 
-
+Static imports:
+```
 public class Sample {
     public static double PI = 3.14159;
     public static void doTask() {
@@ -1239,3 +1240,4 @@ public class Sample {
 
 import static pkg.Sample.doTask;
 import static pkg.Sample.PI;
+```

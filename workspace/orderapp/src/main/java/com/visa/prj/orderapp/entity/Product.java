@@ -20,12 +20,12 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "{NotBlank.product.name}")
     private  String name;
 
-    @Min(value = 10, message = "Price ${validatedValue} must be greater than {value}")
+    @Min(value = 10, message = "{Min.product.price}")
     private double price;
 
-    @Min(value = 1, message = "Quantity ${validatedValue} must be greater than {value}")
+    @Min(value = 1, message = "{Min.product.quantity}")
     private int quantity;
 }
