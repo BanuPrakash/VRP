@@ -1212,3 +1212,30 @@ MethodArgumentNotValidException:
  default message [Price -100.0 must be greater than 10]] 
 
 BindingResult is an interface that represents the result of binding data to a Java object. It's commonly used in conjunction with the @Valid annotation to validate user input and handle validation errors in your controller methods.
+
+AAA ==> Assemble Action Assert
+
+Testing module for web by default adds:
+1) JUnit as Unit testing framework / TestNG alternate
+2) Mockito as Mocking library to test in isolation / EqasyMock, JMock, ...
+3) Hamcrest --> matchers
+4) jsonPath https://jsonpath.com/
+
+
+@WebMvcTest(ProductController.class)
+creates a TestDispatcherServlet instead of DispatcherServlet
+creates web context where @Controller and @RestController can execute
+No Spring Container intialzed with beans 
+only ProductController is created as bean
+
+
+
+public class Sample {
+    public static double PI = 3.14159;
+    public static void doTask() {
+
+    }
+}
+
+import static pkg.Sample.doTask;
+import static pkg.Sample.PI;

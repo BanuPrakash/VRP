@@ -1,6 +1,7 @@
 package com.visa.prj.orderapp.api;
 
 import com.visa.prj.orderapp.service.EntityNotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,7 @@ public class GlobalExceptionHandler {
 
         message.put("errors", errors);
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+
+
     }
 }
