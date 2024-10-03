@@ -1161,4 +1161,54 @@ updateEmployee(Employee e) {
 }
 
 ```
+//@WebMvcTest(ProductController.class)
+@WebAppConfiguration
+@AutoConfigureMockMvc
+@SpringBootTest(classes = ShopappApplication.class)
 
+==============
+Bi-Directional mapping:
+```
+public class Owner {
+
+    @OneToMany(mappedBy="owner, fetch=FetchType.EAGER)
+    private Set<Pet> pets = new LinkedHashSet<>();
+}
+
+
+public class Pet {
+
+    @ManyToOne
+    @JoinColumn(name="owner_fk")
+    private Owner owner;
+}
+
+
+Owner owner = ownerRepo.findById(1);
+```
+
+@ControllerAdvice : AOP
+this acts like a GlobalExceptionHandler which gets called whenever an exception is propagated from @Controller and @RestController
+
+```
+ <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+ @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product addProduct(@RequestBody @Valid  Product p) {
+        return  service.addProduct(p);
+    }
+
+```
+
+===
+
+MethodArgumentNotValidException: 
+ 3 errors: 
+ default message [Name is required]] 
+ default message [Quantity 0 must be greater than 1]] 
+ default message [Price -100.0 must be greater than 10]] 
+
+BindingResult is an interface that represents the result of binding data to a Java object. It's commonly used in conjunction with the @Valid annotation to validate user input and handle validation errors in your controller methods.

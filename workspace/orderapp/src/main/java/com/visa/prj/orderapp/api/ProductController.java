@@ -3,6 +3,7 @@ package com.visa.prj.orderapp.api;
 import com.visa.prj.orderapp.entity.Product;
 import com.visa.prj.orderapp.service.EntityNotFoundException;
 import com.visa.prj.orderapp.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product addProduct(@RequestBody Product p) {
+    public Product addProduct(@RequestBody @Valid  Product p) {
         return  service.addProduct(p);
     }
 
