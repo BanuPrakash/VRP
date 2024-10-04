@@ -1241,3 +1241,22 @@ public class Sample {
 import static pkg.Sample.doTask;
 import static pkg.Sample.PI;
 ```
+
+Employee resolved_by;  // wrong
+Employee resolvedBy; // correct
+
+private final static double MAX_AGE = 100;  // correct
+
+===========================================
+
+Documentation : RESTApi
+* RAML --> write YAML REST APi Modeling Language
+* OpenAPI -> Swagger
+
+http://localhost:8080/v3/api-docs
+
+http://localhost:8080/swagger-ui/index.html
+
+
+
+

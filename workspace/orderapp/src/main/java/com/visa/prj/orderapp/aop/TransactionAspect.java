@@ -20,6 +20,7 @@ public class TransactionAspect {
                 log.info("Commit Transaction...");
             } catch (Exception ex) {
                 log.info("Rollback");
+                throw  ex;
             }
             return  ret;
     }

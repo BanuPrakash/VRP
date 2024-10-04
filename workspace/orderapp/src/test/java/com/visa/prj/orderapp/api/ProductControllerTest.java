@@ -82,7 +82,7 @@ public class ProductControllerTest {
                         .contentType("application/json"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.errors", hasSize(3)))
-                .andExpect(jsonPath("$.errors", hasItem("Name is required")))
+                .andExpect(jsonPath("$.errors", hasItem("Name is required!!!")))
                 .andExpect(jsonPath("$.errors", hasItem("Quantity 0 must be greater than 1")));
 
     verifyNoInteractions(service);
