@@ -1,0 +1,15 @@
+### @name="Add a new Pet"
+POST http://localhost:8080/pets
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Terry",
+  "birthDate": "2021-10-12",
+  "type": {
+    "id": 2
+  },
+  "owner": {
+    "id": 8
+  }
+}

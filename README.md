@@ -1320,4 +1320,37 @@ NodeJs has to be installed
 
 npx redis-commander
 
+============
+
+Get permission and install  NodeJS and VS Code.
+Node version is 20.x.x
+
+npm config set proxy http://username:password@userproxy.visa.com:80
+npm config set https-proxy http://username:password@userproxy.visa.com:80
+
+======================================
+https://martinfowler.com/articles/richardsonMaturityModel.html
+
+Level 3 RESTful WS.
+HATEOAS: Hypermedia As The Engine Of Application State
+
+WebMvcLinkBuilder:
+
+RepresentationModel
+* EntityModel
+* CollectionModel
+
+Spring Data Rest
+Spring Data REST builds on top of Spring Data repositories, analyzes your application's domain model and exposes hypermedia-driven HTTP resources
+* No need for Services and Controller and RestController classes
+
+====
+
+dependecies:
+lombok, mysql, jpa, web, spring-data-rest <<Rest Repositories>>
+
+
+
+
+
 
