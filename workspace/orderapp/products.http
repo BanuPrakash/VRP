@@ -1,3 +1,10 @@
+### @name="Cache Product GET"
+GET http://localhost:8080/api/products/cache/5
+Accept: application/json
+
+
+
+
 ### @name="ETAG"
 ### @name="get product by ID"
 GET http://localhost:8080/api/products/etag/2

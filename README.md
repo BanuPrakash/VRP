@@ -1307,5 +1307,11 @@ User 2:
 ```
 
 
+@Cacheable --> Cache
+@CachePut --> update the cache
+@CacheEvict --> remove from cache
 
+https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
+
+docker run -d --name=some-redis -p 6379:6379 redis
 

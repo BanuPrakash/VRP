@@ -11,6 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +56,19 @@ public class ProductController {
         return service.getProductById(id);
     }
 
+    // SpEL
+    @Cacheable(cacheNames = "productCache", key = "#id")
+    @GetMapping("/cache/{id}")
+    public Product getProductCacheById(@PathVariable("id") int id) throws EntityNotFoundException {
+        System.out.println("Cache Miss!!!");
+        try {
+            Thread.sleep(2000);
+        }catch (InterruptedException ex) {ex.printStackTrace();}
+        return service.getProductById(id);
+    }
+
+
+
     @GetMapping("/etag/{id}")
     public ResponseEntity<Product> getProductByEtagId(@PathVariable("id") int id) throws EntityNotFoundException {
         Product p =  service.getProductById(id);
@@ -61,18 +77,21 @@ public class ProductController {
                 .body(p);
     }
 
+    @Cacheable(cacheNames = "productCache", key = "#p.id")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product addProduct(@RequestBody @Valid  Product p) {
         return  service.addProduct(p);
     }
 
+    @CachePut(cacheNames = "productCache", key = "#id")
 //    @PutMapping ("/{id}")
     @PatchMapping ("/{id}")
     public Product update(@PathVariable("id") int id, @RequestBody Product p) throws EntityNotFoundException{
         return service.updateProductEntity(id, p);
     }
 
+    @CacheEvict(cacheNames = "productCache", key = "#id")
     @Hidden
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable("id") int id) {
