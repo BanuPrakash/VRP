@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,6 +51,14 @@ public class ProductController {
     @GetMapping("/{id}")
     public Product getProductById(@PathVariable("id") int id) throws EntityNotFoundException {
         return service.getProductById(id);
+    }
+
+    @GetMapping("/etag/{id}")
+    public ResponseEntity<Product> getProductByEtagId(@PathVariable("id") int id) throws EntityNotFoundException {
+        Product p =  service.getProductById(id);
+        return  ResponseEntity.ok()
+                .eTag(Long.toString(p.hashCode()))
+                .body(p);
     }
 
     @PostMapping

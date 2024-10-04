@@ -28,4 +28,8 @@ public class Product {
 
     @Min(value = 1, message = "{Min.product.quantity}")
     private int quantity;
+
+    @Version
+    @Column(name = "ver")
+    int version;
 }

@@ -1257,6 +1257,55 @@ http://localhost:8080/v3/api-docs
 
 http://localhost:8080/swagger-ui/index.html
 
+https://springdoc.org
+
+=====================
+
+Caching:
+* Client Side Caching
+* Middleware Caching --> Web application level
+* Backend caching --> JPA second level cache [Swarm Cache / EHCache]
+
+Client Side Caching:
+Cache-control header
+Cache-Control: max-age=604800 <<Sec>>
+
+ETag
+
+```
+ @Version
+ @Column(name = "ver")
+ int version;
+
+ for every JPA update --> it increments ver column value
+ +----+----------------+--------+----------+
+| id | name           | price  | quantity | ver
++----+----------------+--------+----------+ 
+|  1 | iPhone 16      | 980000 |       94 |  0
+|  2 | Macbook Pro    | 259990 |       99 |  0
+
+User 1:
+    gets product 
+    2 | Macbook Pro    | 259990 |       99 |  0
+
+    buys 2 laptops
+    without version:
+    update products set qty = qty - 2 where id = 2
+
+    With version
+      update products set qty = qty - 2, ver = ver + 1 where id = 2 and ver = 0
+User 2:
+     gets product 
+    2 | Macbook Pro    | 259990 |       99 |  0
+
+    buys 9 laptops
+    without version:
+    update products set qty = qty - 2 where id = 2
+
+     With version
+      update products set qty = qty - 9, ver = ver + 1 where id = 2 and ver = 0
+```
+
 
 
 

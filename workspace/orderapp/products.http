@@ -1,3 +1,14 @@
+### @name="ETAG"
+### @name="get product by ID"
+GET http://localhost:8080/api/products/etag/2
+Accept: application/json
+
+### @name="ETAG"
+### @name="get product by ID If-None-Match"
+GET http://localhost:8080/api/products/etag/2
+Accept: application/json
+If-None-Match: "-1496669395"
+
 ### @name="get all products"
 GET http://localhost:8080/api/products
 Accept: application/json
