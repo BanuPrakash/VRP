@@ -1315,3 +1315,9 @@ https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
 
 docker run -d --name=some-redis -p 6379:6379 redis
 
+redis-commander:
+NodeJs has to be installed
+
+npx redis-commander
+
+
