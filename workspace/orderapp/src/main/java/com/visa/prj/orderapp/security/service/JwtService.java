@@ -1,6 +1,7 @@
 package com.visa.prj.orderapp.security.service;
 
 import com.visa.prj.orderapp.security.User;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -15,7 +16,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static java.security.KeyRep.Type.SECRET;
 
 /**
     To generate and validate token
@@ -50,5 +54,40 @@ public class JwtService {
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64URL.decode(jwtSigningKey);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    private Claims extractAllClaims(String token) {
+        Claims claims;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(jwtSigningKey)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            claims = null;
+        }
+        return claims;
+    }
+
+    private <T>  T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    public String extractUserName(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+    private boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    public boolean isTokenValid(String token, UserDetails userDetails) {
+        String userName = extractUserName(token);
+        User user = (User) userDetails;
+        return (userName.equals(user.getEmail()) && !isTokenExpired(token));
     }
 }
