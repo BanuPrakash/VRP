@@ -1461,5 +1461,11 @@ Include Security for orderapp using JWT:
         <!-- Security ends -->
        
 ```
-User <---> Role many-to-many 
+User <---> Role man
+```
+:: method reference
 
+products.stream().forEach(p -> System.out.println(p));
+can be written as
+products.stream().forEach(System.out::println);
+```
