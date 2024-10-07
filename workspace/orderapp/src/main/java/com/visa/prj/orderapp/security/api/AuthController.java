@@ -1,5 +1,6 @@
 package com.visa.prj.orderapp.security.api;
 
+import com.visa.prj.orderapp.security.dto.JwtTokenResponse;
 import com.visa.prj.orderapp.security.dto.SignInRequest;
 import com.visa.prj.orderapp.security.dto.SignUpRequest;
 import com.visa.prj.orderapp.security.service.AuthenticationService;
@@ -10,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
     private  final AuthenticationService service;
 
     @PostMapping("/register")
-    public String register(@RequestBody SignUpRequest request) {
-        return service.signup(request);
+    public JwtTokenResponse register(@RequestBody SignUpRequest request) {
+        System.out.println("Entered!!!");
+        return new JwtTokenResponse(service.signup(request));
     }
 
     @PostMapping("/login")

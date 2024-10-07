@@ -2,25 +2,35 @@
 
 POST http://localhost:8080/auth/register
 Content-Type: application/json
-Accept: text/plain
+Accept: application/json
 
 {
   "email": "peter@visa.com",
   "password": "secret",
   "username": "Peter",
-  "roles": ["ROLE_USER"]
+  "roles": [ {
+    "name": "ROLE_USER",
+    "description": "Has basic rights"
+  }]
 }
 
 ### @name ="Register Admin"
 
 POST http://localhost:8080/auth/register
 Content-Type: application/json
-Accept: text/plain
+Accept: application/json
 
 {
   "email": "anna@visa.com",
   "password": "secret",
   "username": "Anna",
-  "roles": ["ROLE_USER", "ROLE_ADMIN"]
+  "roles": [ {
+  "name": "ROLE_USER",
+  "description": "Has basic rights"
+},
+    {
+      "name": "ROLE_ADMIN",
+      "description": "Admin rights"
+    }]
 }
 
