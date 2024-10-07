@@ -1380,5 +1380,13 @@ authorities / roles
 
 JSESSIONID: aedpr0125R
 
+=====
 
+spring.sql.init.mode=always
+spring.jpa.defer-datasource-initialization=true
 
+on application start it executes:
+1) schema.sql
+2) data.sql
+
+Security Database Schema
