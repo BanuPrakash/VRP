@@ -1349,8 +1349,36 @@ Spring Data REST builds on top of Spring Data repositories, analyzes your applic
 dependecies:
 lombok, mysql, jpa, web, spring-data-rest <<Rest Repositories>>
 
+===============================================
+
+Security
+
+Spring Boot Security
+```
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
+```
+By including security module. 
+1) All resources will be protected
+2) creates a single user with username as "user" 
+and password will be generated
+3) login and logout pages
+http://localhost:8080/logout
+
+New Spring boot project: Maven based
+dependencies:
+web, security
+Using generated security password: efdf4a40-2452-4001-92dd-1b416796b698
+
+Secuity is Authentication and Authorization
 
 
+Principle/username
+authorities / roles
+
+JSESSIONID: aedpr0125R
 
 
 
