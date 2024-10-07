@@ -34,3 +34,9 @@ Accept: application/json
     }]
 }
 
+
+### @name="access Protected Resource"
+
+GET http://localhost:8080/api/products
+Accept: application/json
+Authorization: Bearer <<token>>
