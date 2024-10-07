@@ -1470,6 +1470,8 @@ can be written as
 products.stream().forEach(System.out::println);
 ```
 
+Resume @ 2:00
+
 
 
 
