@@ -1390,3 +1390,76 @@ on application start it executes:
 2) data.sql
 
 Security Database Schema
+
+=====================
+
+Adding Secuity to RESTApi.
+
+Characterstics of RESTful WS
+1) Client - server seperation
+2) Uniform Resource 
+3) Cacheable
+4) Stateless : no session tracking --> Solution is use token
+
+JWT: JSON Web token is used for Authorization
+https://jwt.io/
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+HEADER:ALGORITHM & TOKEN TYPE
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+PAYLOAD:DATA
+{
+    "sub": "rita@visa.com",
+    "iat": 343434523,
+    "exp": 366323244,
+    "iss": "authserver.visa.com",
+    "authorities": "MANAGER", "ACCOUNTANT"
+}
+
+VERIFY SIGNATURE:
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  your_top_secret_salt_value <<application.properties or 
+    generally coming from Config Server>>
+) 
+```
+keytool is used to generate private and public key:
+instead of your_top_secret_salt_value we can also use encoder
+public key is used to generate token << used by AuthServer>>
+private key is used to validate token << used by ResourceServer>>
+
+Include Security for orderapp using JWT:
+```
+  <!-- Security starts -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+         <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+
+        <!-- Security ends -->
+       
+```
+User <---> Role many-to-many 
+
