@@ -1469,3 +1469,9 @@ products.stream().forEach(p -> System.out.println(p));
 can be written as
 products.stream().forEach(System.out::println);
 ```
+
+
+
+
+
+

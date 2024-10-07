@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.security.Key;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,10 @@ import java.util.stream.Collectors;
 public class JwtService {
     @Value("${jwt.secret}")
     private String jwtSigningKey;
+
+    public String generateToken(UserDetails userDetails) {
+        return generateToken(new HashMap<>(), userDetails);
+    }
 
     private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         Collection<String> authorities = userDetails
