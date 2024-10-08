@@ -1530,6 +1530,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0I
 
 
 ```
+==========================================
+
+RESTful WS clients: Consume RESTful WS
+
+Java Standalone client --> RESTful WS
+RESTful WS ---> RESTful WS [ MicroServices]
+* RestTemplate
+* WebClient
+* RestClient
+
+
 
 
 
