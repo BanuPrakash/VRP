@@ -1540,9 +1540,31 @@ RESTful WS ---> RESTful WS [ MicroServices]
 * WebClient
 * RestClient
 
+```
+class ClassName {
+ static doTask(p)
+}
 
+products.stream().forEach(p -> ClassName.doTask(p));
+products.stream().forEach(ClassName::doTask);
 
+products.stream().forEach(p -> System.out.println(p));
+products.stream().forEach(System.out::println);
+```
 
+Spring Boot HTTP Interface using @HttpExchange
+
+What is a Declarative Http Interface?
+
+@GetExchange for HTTP GET requests
+@PostExchange for HTTP POST requests
+@PutExchange for HTTP PUT requests
+@PatchExchange for HTTP PATCH requests
+@DelectExchange for HTTP DELETE requests
+
+-----------
+
+Making Async calls 
 
 
 
