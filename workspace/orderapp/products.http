@@ -29,11 +29,13 @@ POST http://localhost:8080/api/products
 Accept: application/json
 Accept-Language: hi
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzI4MzY0ODMxLCJleHAiOjE3MjgzNjYyNzEsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwicm9sZXMiOlsiUk9MRV9VU0VSIiwiUk9MRV9BRE1JTiJdLCJpc3MiOiJodHRwczovL2F1dHNlcnZlci52aXNhLGNvbiJ9.rEoca7UVgfiesW4FGeqN2hmAvqUZ9kXiNsd6rh41Lmc
 
 
 {
-  "price": -100.00,
-  "quantity": -33
+  "name" : "Some Prod",
+  "price": 700.00,
+  "quantity": 33
 }
 
 

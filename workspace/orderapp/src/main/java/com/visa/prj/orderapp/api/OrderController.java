@@ -22,7 +22,7 @@ public class OrderController {
     // GET http://localhost:8080/api/orders
     // GET http://localhost:8080/api/orders?order-date=2024-09-29
 
-    @PreAuthorize("ROLE_ADMIN")
+//    @PreAuthorize("ROLE_ADMIN")
     @GetMapping()
     public List<Order> getOrders(@RequestParam(name = "order-date", required = false)
                                      @DateTimeFormat(pattern = "yyyy-MM-dd") Date orderDate) {
