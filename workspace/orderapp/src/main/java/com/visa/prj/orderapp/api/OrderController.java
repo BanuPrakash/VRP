@@ -7,6 +7,7 @@ import com.visa.prj.orderapp.service.EntityNotFoundException;
 import com.visa.prj.orderapp.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class OrderController {
     // GET http://localhost:8080/api/orders
     // GET http://localhost:8080/api/orders?order-date=2024-09-29
 
+    @Secured("ADMIN")
     @GetMapping()
     public List<Order> getOrders(@RequestParam(name = "order-date", required = false)
                                      @DateTimeFormat(pattern = "yyyy-MM-dd") Date orderDate) {

@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody SignInRequest request) {
-        return service.signIn(request);
+    public JwtTokenResponse login(@RequestBody SignInRequest request) {
+        return new JwtTokenResponse(service.signIn(request));
     }
 }

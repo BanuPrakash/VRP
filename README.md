@@ -1470,7 +1470,67 @@ can be written as
 products.stream().forEach(System.out::println);
 ```
 
-Resume @ 2:00
+Spring Security
+---------------
+
+Part 1:
+including security dependency.
+* All resources were protected 
+* login and logout pages
+* one user with username as "user" and generated password was created
+
+Part 2:
+@EnableWebSecurity to do customization
+* InMemoryUserDetailsService 
+* SecuirtyFilterChain to controll resources accessed by ROLE.
+
+Part 3:
+* instead of InMemory we used Spring security DaoAuthenticationProvider <<default>>
+it uses schema as speicifed "users" and "authorities" 
+* BcryptPasswordEncoder
+
+Flow:
+
+DelegatingFilterProxy --> UsernamePasswordAuthenticationFilter : attemptAuthentication()
+created UsernamePasswordAuthenticationToken dto --> AuthenticationManger : authenticate()
+
+AuthenticationManger can connect to different provides like LDAP / DAO / InMemory
+All these providers should implement UserDetailsService
+
+UserDetails loadUserByUsername(String user) throws ...
+
+successfulAuthentication (Authentication dto);
+
+gets securityContext from securityContextHolder
+
+======
+
+Part 4: JWT and using Stateless 
+
+```
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "anna@visa.com",
+  "password": "secret"
+}
+
+Response:
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzI4MzYxNzA3LCJleHAiOjE3MjgzNjMxNDcsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9hdXRzZXJ2ZXIudmlzYSxjb24ifQ.Sc2up5cBqPxFAqATuHUCzJtffCTtj5ULQFbIgWY5CFQ"
+}
+
+---
+GET http://localhost:8080/api/products
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzI4MzYxNzA3LCJleHAiOjE3MjgzNjMxNDcsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9hdXRzZXJ2ZXIudmlzYSxjb24ifQ.Sc2up5cBqPxFAqATuHUCzJtffCTtj5ULQFbIgWY5CFQ"
+
+
+```
+
 
 
 

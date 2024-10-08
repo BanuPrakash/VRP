@@ -35,8 +35,20 @@ Accept: application/json
 }
 
 
+### @name ="Admin Login"
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": "anna@visa.com",
+  "password": "secret"
+}
+
+
 ### @name="access Protected Resource"
 
-GET http://localhost:8080/api/products
+GET http://localhost:8080/api/orders
 Accept: application/json
-Authorization: Bearer <<token>>
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbm5hQHZpc2EuY29tIiwiaWF0IjoxNzI4MzYyMDQxLCJleHAiOjE3MjgzNjM0ODEsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaXNzIjoiaHR0cHM6Ly9hdXRzZXJ2ZXIudmlzYSxjb24ifQ.WSvdFUQvl5iBhQUf5DyO9JyXx5QsXTaiLR_ieT5OQEM

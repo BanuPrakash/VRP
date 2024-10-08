@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,6 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -32,11 +34,11 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(requests -> requests.requestMatchers("/auth/**")
                         .permitAll()
-                        .requestMatchers("/api/order/**")
-                        .hasRole("ADMIN")
-                        .requestMatchers("/api/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/v3/api-docs/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
+//                        .requestMatchers("/api/orders")
+//                        .hasRole("ADMIN")
+//                        .requestMatchers("/api/products/**").permitAll()
+//                        .requestMatchers("/v3/api-docs/**").permitAll()
+//                        .requestMatchers("/swagger-ui/**").permitAll()
                         .anyRequest().permitAll()
                         )
                         .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
