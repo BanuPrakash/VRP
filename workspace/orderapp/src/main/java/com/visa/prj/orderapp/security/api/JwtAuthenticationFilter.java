@@ -31,17 +31,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
         String jwt;
         String email;
-        if(ObjectUtils.isEmpty(authHeader) ||
-                !StringUtils.startsWithIgnoreCase("authHeader", "Bearer")) {
+        //||
+        //                !StringUtils.startsWithIgnoreCase("authHeader", "Bearer")
+        if(ObjectUtils.isEmpty(authHeader) ) {
             filterChain.doFilter(request, response);
             return;
         }
         jwt = authHeader.substring(7);
         email = jwtService.extractUserName(jwt);
-        if(!StringUtils.hasText(email) &&
-                SecurityContextHolder.getContext().getAuthentication() == null) {
+        System.out.println("Extracted " + email);
+//        if(!StringUtils.hasText(email) &&
+//                SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.userDetailsService().loadUserByUsername(email);
             if(jwtService.isTokenValid(jwt, userDetails)) {
+                System.out.println("Token is valid!!!");
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authenticationToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -49,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 context.setAuthentication(authenticationToken);
                 SecurityContextHolder.setContext(context);
-            }
+//            }
             filterChain.doFilter(request, response);
         }
     }

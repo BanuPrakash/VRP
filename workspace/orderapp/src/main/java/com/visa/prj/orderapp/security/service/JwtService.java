@@ -47,6 +47,7 @@ public class JwtService {
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 *24))
                 .claim("authorities", authorities)
+                .claim("roles", authorities)
                 .claim("iss", "https://autserver.visa,con")
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256).compact();
     }
@@ -63,7 +64,9 @@ public class JwtService {
                     .setSigningKey(jwtSigningKey)
                     .parseClaimsJws(token)
                     .getBody();
+            System.out.println("Claims " + claims );
         } catch (Exception e) {
+            e.printStackTrace();
             claims = null;
         }
         return claims;
@@ -75,7 +78,9 @@ public class JwtService {
     }
 
     public String extractUserName(String token) {
-        return extractClaim(token, Claims::getSubject);
+        String sub =  extractClaim(token, Claims::getSubject);
+        System.out.println("Subject " + sub);
+        return sub;
     }
 
     public Date extractExpiration(String token) {
@@ -88,6 +93,7 @@ public class JwtService {
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         String userName = extractUserName(token);
+        System.out.println("Extracted userNAme " + userName);
         User user = (User) userDetails;
         return (userName.equals(user.getEmail()) && !isTokenExpired(token));
     }
