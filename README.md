@@ -1566,6 +1566,33 @@ What is a Declarative Http Interface?
 
 Making Async calls 
 
+Monolithic vs microservices
+
+Monolithic: a single jar/war/ear contains the entire application
+
+Microservice:
+productapp
+customerapp
+orderapp
+paymentapp
+
+DiscoveryServer
+
+product-service; 198.3.1.44:8011; 187.34.44.11:9999
+
+```
+spring:
+  application:
+    name: movie-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+```
+
+
+
 
 
 
