@@ -1590,7 +1590,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 ```
+assuming we have review-service
 
+open feign client to reviews
 
 
 
