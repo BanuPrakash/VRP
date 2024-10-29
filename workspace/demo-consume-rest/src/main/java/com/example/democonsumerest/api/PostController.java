@@ -21,6 +21,16 @@ public class PostController {
 
     record PostsDTO(String title, String user) {}
 
+    // write a method to for GET : /api/posts
+    // return a list of PostsDTO
+    // use AggregatorService to get the posts and users
+    // use CompletableFuture to make the service calls non-blocking
+    // use the barrier pattern to wait for all the results
+    // map the posts to PostsDTO
+    // return the list of PostsDTO
+
+
+
     @GetMapping()
     public List<PostsDTO> getPosts() {
         CompletableFuture<List<Post>> posts = service.getPosts();  // non - blocking
