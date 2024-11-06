@@ -29,6 +29,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 @RequestMapping("api/products")
 @RequiredArgsConstructor
 @Tag(name = "Product API", description = "Product API Service")
+@CrossOrigin(originPatterns = "*")
 public class ProductController {
     private final OrderService service;
 

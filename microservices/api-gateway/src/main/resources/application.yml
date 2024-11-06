@@ -8,6 +8,11 @@ spring:
           uri: lb://movie-service
           predicates:
             - Path=/movies/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9999/oauth/token
 
 eureka:
   client:

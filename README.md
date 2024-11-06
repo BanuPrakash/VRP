@@ -1598,4 +1598,27 @@ open feign client to reviews
 
 
 
+React Login page:
 
+email [.....]
+password [....]
+<<Login Button>>
+
+onclick ==>
+
+function handleSubmit() {
+    axios.post("http://localhost:8080/auth/login", {
+        email,
+        pwe
+    }).then(response => {
+        window.sessionStorage.setItem("token", response.data.token);
+    })
+}
+
+// for other requests
+
+axios.get("http://...",{
+    headers: {
+        "Authorization": window.sessionStorage.getItem("token")
+    }
+})
